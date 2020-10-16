@@ -1,7 +1,9 @@
 <template>
+
   <!-- Material form login -->
-  
     <div class="container"> 
+
+        
         <form>
         <p class="h4 text-center mb-4 ">Iniciar sesion</p>
         <div class="grey-text">
@@ -19,7 +21,7 @@
 
 <script>
   import { mdbInput } from 'mdbvue';
-  import { navBar} from '@/components/navBar.vue';
+  
   export default {
     name: 'Register',
     components: {
@@ -29,7 +31,5 @@
 </script>
 
 <style scoped>
-    #container{
-        
-    }
+
 </style>
