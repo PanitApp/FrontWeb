@@ -27,7 +27,7 @@
                                 <i class="fas fa-chalkboard prefix"></i>
                               </span>
                             </div>
-                            <input type="text" class="form-control" placeholder="Nombre del curso" aria-label="Username" aria-describedby="basic-addon">
+                            <input v-model="newNombreC" type="text" class="form-control" placeholder="Nombre del curso" aria-label="Username" aria-describedby="basic-addon">
                           </div>
                           <div class="input-group" style="margin-bottom:20px">
                             <div class="input-group-prepend">
@@ -35,10 +35,10 @@
                                 <i class="fas fa-pen prefix"></i>
                               </span>
                             </div>
-                            <input type="textarea" class="form-control" placeholder="Descripción" aria-label="Username" aria-describedby="basic-addon">
+                            <input v-model="newDescC" type="textarea" class="form-control" placeholder="Descripción" aria-label="Username" aria-describedby="basic-addon">
                           </div>
                         </div>
-                        <button style="color:#03A2AB;" class="border m-2 rounded" v-on:click="login(data)" type="submit" target="_blank"><mdb-icon icon="plus-circle" class="mr-2"/>Crear curso</button>
+                        <button style="color:#03A2AB;" class="border m-2 rounded" v-on:click="crearC()"  type="button" target="_blank"><mdb-icon icon="plus-circle" class="mr-2"/>Crear curso</button>
                       </form>
                     </mdb-col>
                   </mdb-row>   
@@ -49,6 +49,10 @@
         </mdb-row>
       </mdb-container>
       <mdb-container>
+        <h1>{{newNombreC}}</h1>
+        <h1>{{newDescC}}</h1>
+        <h1>{{idProfesor}}</h1>
+
         <Footer/>
       </mdb-container>
     </div>
@@ -57,8 +61,15 @@
 <script>
 import Footer from "@/components/Footer.vue";
 import NavBarTeachers from "@/components/NavBar.vue";
+import gql from 'graphql-tag';
 import { mdbContainer, mdbCol, mdbRow, mdbIcon, mdbEdgeHeader, mdbCardBody, animateOnScroll } from 'mdbvue';
+const CrearCurso= gql`
+    mutation crearCurso($curso: CursoInput){
+      crearCurso(curso:$curso)
 
+    }
+
+    `
 export default {
   name: 'HomePage',
   components: {
@@ -70,6 +81,33 @@ export default {
     mdbCardBody,
     NavBarTeachers,
     Footer
+  },
+  data () {
+    return {
+      newNombreC:"",
+      newDescC:"",
+      idProfesor: this.$store.state.user.id
+    }
+  },
+  methods:{
+    crearC: function(){
+      this.$apollo.mutate({
+       mutation: CrearCurso,
+       variables: {
+         curso: {
+          nombre: this.newNombreC,
+          descripcion: this.newDescC,
+          profesor: this.idProfesor
+        },
+       },
+       update: (cache, { data: { crearCurso } }) => {
+         // Read the data from our cache for this query.
+         // eslint-disable-next-line
+         console.log(crearCurso);
+         
+       },
+        });
+      }
   },
   directives: {
     animateOnScroll

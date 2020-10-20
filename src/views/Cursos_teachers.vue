@@ -23,7 +23,7 @@
                       <a href="" class="nav-link border m-2 font-weight-bold rounded" target="_blank"><mdb-icon icon="chalkboard" class="mr-2"/>Ver cursos</a>
                     </mdb-col>  
                     <mdb-col md="6"> 
-                      <a href="/cursos_crear" class="nav-link border m-2 font-weight-bold rounded" target="_blank"><mdb-icon icon="plus-circle" class="mr-2"/>Crear curso</a>
+                      <a v-on:click="ircrearCursos()" class="nav-link border m-2 font-weight-bold rounded" target="_blank"><mdb-icon icon="plus-circle" class="mr-2"/>Crear curso</a>
                     </mdb-col>
                   </mdb-row>   
                 </mdb-col>
@@ -48,6 +48,7 @@
             </mdb-card>
           </mdb-col>
         </mdb-row>
+        <h1>{{idstore}}</h1>
         <Footer/>
       </mdb-container>
     </div>
@@ -73,6 +74,17 @@ export default {
     mdbCardBody,
     NavBarTeachers,
     Footer
+  },
+  data(){
+    return{
+      idstore: this.$store.state.user.id,
+      nombreusuario: this.$store.state.user.username
+    }
+  },
+  methods:{
+    ircrearCursos: function(){
+        this.$router.push('/cursos_crear')
+      }
   },
   directives: {
     animateOnScroll

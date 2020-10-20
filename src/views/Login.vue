@@ -106,7 +106,9 @@
             }
             this.$store.dispatch('storeUser',usuario)
             this.$store.dispatch('changeLogState')
-            this.$router.push('/home')
+            if(usuario.Rol=="Profesor"){
+              this.$router.push('/index_teachers')
+            }
           }else{
             window.alert("contraseña incorrecta")
           }
