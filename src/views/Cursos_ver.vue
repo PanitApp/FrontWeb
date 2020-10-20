@@ -10,20 +10,20 @@
         <mdb-row>
           <mdb-col md="10" class="mx-auto white z-depth-1 py-2 px-2">
             <mdb-card-body>
-              <h2 class="pb-4"><strong style="color:#037E85">Mis Cursos</strong></h2>
+              <h2 class="pb-4"><strong style="color:#037E85">Nombre del curso</strong></h2>
               <mdb-row>
                 <mdb-col md="3">
                   <img src="../../src/assets/Panitapp.png" class="img-fluid"/>
                 </mdb-col>
                 <mdb-col md="9">
-                  <p class="pb-4">Bienvenido a la sección de Cursos de PanitApp<br>
-                    [ Aquí podrás crear y ver tus cursos ]</p>
+                  <p class="pb-4">Descripción</p>
                   <mdb-row class="d-flex flex-row justify-content-center">
-                    <mdb-col md="6">
-                      <a href="" class="nav-link border m-2 font-weight-bold rounded"><mdb-icon icon="chalkboard" class="mr-2"/>Ver cursos</a>
-                    </mdb-col>  
-                    <mdb-col md="6"> 
-                      <a href="/cursos_crear" class="nav-link border m-2 font-weight-bold rounded"><mdb-icon icon="plus-circle" class="mr-2"/>Crear curso</a>
+                    <mdb-col md="9">
+                        <p class="text-justify">Ambitioni dedisse scripsisse iudicaretur. Cras mattis iudicium purus sit amet
+                                                fermentum. Donec sed odio operae, eu vulputate felis rhoncus. Praeterea iter est quasdam res quas ex communi. At nos hinc posthac, sitientis
+                                                piros</p>
+                      <button @click.prevent="volver" style="color:#03A2AB;" class="border m-2 rounded"><mdb-icon icon="undo" class="mr-2"/>Volver</button>
+                      <button style="color:#03A2AB;" class="border m-2 rounded"><mdb-icon icon="users" class="mr-2"/>Agregar estudiantes</button>
                     </mdb-col>
                   </mdb-row>   
                 </mdb-col>
@@ -33,21 +33,12 @@
         </mdb-row>
       </mdb-container>
       <mdb-container>
-        <h2 class="text-center mt-5 font-weight-bold" style="color:#037E85">Cursos</h2>
+        <h2 class="text-center mt-5 font-weight-bold" style="color:#037E85">Estudiantes</h2>
         <mdb-col md="10" class="mx-auto text-center text-muted mb-5">
-          <p>Listado de cursos asociados</p>
+          <p>Listado de estudiantes inscritos</p>
+          <mdb-datatable-2 v-model="data" />
         </mdb-col>
-        <mdb-row>
-          <mdb-col md="4" class="mb-5">
-            <mdb-card class="animated fadeInRight">
-              <mdb-card-body>
-                <mdb-card-title><mdb-icon icon="graduation-cap" class="green-text" /><strong> Programación</strong></mdb-card-title>
-                <mdb-card-text>Curso introductorio de programación en el lenguage Java.</mdb-card-text>
-                <mdb-btn @click="verCurso" style="background-color:#013D40">Más</mdb-btn>
-              </mdb-card-body>
-            </mdb-card>
-          </mdb-col>
-        </mdb-row>
+        
         <Footer/>
       </mdb-container>
     </div>
@@ -56,7 +47,7 @@
 <script>
 import Footer from "@/components/Footer.vue";
 import NavBarTeachers from "@/components/NavBar.vue";
-import { mdbContainer, mdbCol, mdbRow, mdbIcon, mdbBtn, mdbEdgeHeader, mdbCard, mdbCardTitle, mdbCardText, mdbCardBody, animateOnScroll } from 'mdbvue';
+import { mdbContainer, mdbCol, mdbRow, mdbIcon, mdbEdgeHeader, mdbCardBody, animateOnScroll, mdbDatatable2} from 'mdbvue';
 
 export default {
   name: 'HomePage',
@@ -65,23 +56,48 @@ export default {
     mdbCol,
     mdbRow,
     mdbIcon,
-    mdbBtn,
     mdbEdgeHeader,
-    mdbCard,
-    mdbCardTitle,
-    mdbCardText,
     mdbCardBody,
     NavBarTeachers,
-    Footer
+    Footer,
+    mdbDatatable2
   },
   directives: {
     animateOnScroll
   },
-  methods: {
-    verCurso() {
-      this.$router.push('/cursos_ver');
+  methods :{
+    volver: function (){
+      this.$router.push('/cursos_teachers');
     }
-  }
+  },
+  data() {
+    return {
+      data: {
+        columns: [
+            {
+              label: 'ID',
+              field: 'id',
+              sort: true
+            },
+            {
+              label: 'NOMBRE',
+              field: 'name',
+              sort: true
+            }
+          ],
+          rows: [
+            {
+              id: '1',
+              name: 'Tiger Nixon',
+            },
+            {
+              id: '2',
+              name: 'Garrett Winters',
+            }
+          ]
+        }
+      }
+    }
 };
 </script>
 

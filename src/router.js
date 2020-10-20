@@ -7,11 +7,6 @@ export default new Router({
   mode: "history",
   routes: [
     {
-      path: '/home',
-      name: 'Home',
-      component: () => import("@/views/Home.vue"),
-    },
-    {
       path: '/login',
       name: 'Login',
       component: () => import("@/views/Login.vue"),
@@ -55,6 +50,11 @@ export default new Router({
       path: '/cursos_crear',
       name: 'CursosCrear',
       component: () => import("@/views/Cursos_crear.vue"),
+    },
+    {
+      path: '/cursos_ver',
+      name: 'CursosVer',
+      component: () => import("@/views/Cursos_ver.vue"),
     }
   ]
 })
