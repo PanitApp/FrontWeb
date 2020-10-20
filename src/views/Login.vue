@@ -39,7 +39,7 @@
 
         <!-- No result -->
         <div v-else class="no-result apollo">No result :(</div>
-        <button class="btn" v-on:click="login(data)" style="background-color:#05DFEB;" type="submit">Iniciar</button>
+        <button class="btn" v-on:click="login(data)" style="background-color:#05DFEB;" type="button">Iniciar</button>
         <p>{{id}}</p>
         <p>{{autenticado}}</p>
         <p>{{idstore}}</p>
@@ -105,8 +105,8 @@
               Rol: data.getUsuarioByUsername[0].rol.nombre,
             }
             this.$store.dispatch('storeUser',usuario)
-            this.$store.dispatch('changeLogState',usuario)
-            this.$router.push('/')
+            this.$store.dispatch('changeLogState')
+            this.$router.push('/home')
           }else{
             window.alert("contraseña incorrecta")
           }

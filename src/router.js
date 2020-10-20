@@ -7,13 +7,13 @@ export default new Router({
   mode: "history",
   routes: [
     {
-      path: '/',
+      path: '/home',
       name: 'Home',
       component: () => import("@/views/Home.vue"),
     },
     {
       path: '/login',
-      name: 'Loginr',
+      name: 'Login',
       component: () => import("@/views/Login.vue"),
     },
     {
