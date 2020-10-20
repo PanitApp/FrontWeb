@@ -6,24 +6,40 @@
       <mdb-edge-header color="teal darken-2">
         <div class="home-page-background"></div>
       </mdb-edge-header>
-      <mdb-container class="free-bird">
+      <mdb-container class="free-bird" style="margin-bottom:250px">
         <mdb-row>
           <mdb-col md="10" class="mx-auto white z-depth-1 py-2 px-2">
             <mdb-card-body>
-              <h2 class="pb-4"><strong style="color:#037E85">Mis Cursos</strong></h2>
+              <h2 class="pb-4"><strong style="color:#037E85">Crear curso</strong></h2>
               <mdb-row>
                 <mdb-col md="3">
                   <img src="../../src/assets/Panitapp.png" class="img-fluid"/>
                 </mdb-col>
                 <mdb-col md="9">
-                  <p class="pb-4">Bienvenido a la sección de Cursos de PanitApp<br>
-                    [ Aquí podrás crear y ver tus cursos ]</p>
+                  <p class="pb-4">Creación de cursos</p>
                   <mdb-row class="d-flex flex-row justify-content-center">
-                    <mdb-col md="6">
-                      <a href="" class="nav-link border m-2 font-weight-bold rounded" target="_blank"><mdb-icon icon="chalkboard" class="mr-2"/>Ver cursos</a>
-                    </mdb-col>  
-                    <mdb-col md="6"> 
-                      <a href="/cursos_crear" class="nav-link border m-2 font-weight-bold rounded" target="_blank"><mdb-icon icon="plus-circle" class="mr-2"/>Crear curso</a>
+                    <mdb-col md="9">
+                      <form>
+                        <div>
+                          <div class="input-group" style="margin-bottom:20px">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="basic-addon">
+                                <i class="fas fa-chalkboard prefix"></i>
+                              </span>
+                            </div>
+                            <input type="text" class="form-control" placeholder="Nombre del curso" aria-label="Username" aria-describedby="basic-addon">
+                          </div>
+                          <div class="input-group" style="margin-bottom:20px">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text" id="basic-addon">
+                                <i class="fas fa-pen prefix"></i>
+                              </span>
+                            </div>
+                            <input type="textarea" class="form-control" placeholder="Descripción" aria-label="Username" aria-describedby="basic-addon">
+                          </div>
+                        </div>
+                        <button style="color:#03A2AB;" class="border m-2 rounded" v-on:click="login(data)" type="submit" target="_blank"><mdb-icon icon="plus-circle" class="mr-2"/>Crear curso</button>
+                      </form>
                     </mdb-col>
                   </mdb-row>   
                 </mdb-col>
@@ -33,21 +49,6 @@
         </mdb-row>
       </mdb-container>
       <mdb-container>
-        <h2 class="text-center mt-5 font-weight-bold" style="color:#037E85">Cursos</h2>
-        <mdb-col md="10" class="mx-auto text-center text-muted mb-5">
-          <p>Listado de cursos asociados</p>
-        </mdb-col>
-        <mdb-row>
-          <mdb-col md="4" class="mb-5">
-            <mdb-card class="animated fadeInRight">
-              <mdb-card-body>
-                <mdb-card-title><mdb-icon icon="graduation-cap" class="green-text" /><strong> Programación</strong></mdb-card-title>
-                <mdb-card-text>Curso introductorio de programación en el lenguage Java.</mdb-card-text>
-                <router-link to="/advanced" class="float-right"><mdb-btn style="background-color:#013D40">Más</mdb-btn></router-link>
-              </mdb-card-body>
-            </mdb-card>
-          </mdb-col>
-        </mdb-row>
         <Footer/>
       </mdb-container>
     </div>
@@ -56,7 +57,7 @@
 <script>
 import Footer from "@/components/Footer.vue";
 import NavBarTeachers from "@/components/NavBar.vue";
-import { mdbContainer, mdbCol, mdbRow, mdbIcon, mdbBtn, mdbEdgeHeader, mdbCard, mdbCardTitle, mdbCardText, mdbCardBody, animateOnScroll } from 'mdbvue';
+import { mdbContainer, mdbCol, mdbRow, mdbIcon, mdbEdgeHeader, mdbCardBody, animateOnScroll } from 'mdbvue';
 
 export default {
   name: 'HomePage',
@@ -65,11 +66,7 @@ export default {
     mdbCol,
     mdbRow,
     mdbIcon,
-    mdbBtn,
     mdbEdgeHeader,
-    mdbCard,
-    mdbCardTitle,
-    mdbCardText,
     mdbCardBody,
     NavBarTeachers,
     Footer

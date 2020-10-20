@@ -50,6 +50,11 @@ export default new Router({
       path: '/calendario_teachers',
       name: 'CalendarioTeachers',
       component: () => import("@/views/Calendario_teachers.vue"),
+    },
+    {
+      path: '/cursos_crear',
+      name: 'CursosCrear',
+      component: () => import("@/views/Cursos_crear.vue"),
     }
   ]
 })
