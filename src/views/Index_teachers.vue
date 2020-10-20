@@ -8,7 +8,7 @@
         <mdb-col sm="4">
           <mdb-card narrow>
             <mdb-view hover cascade>
-              <a href="#!">
+              <a href="/cursos_teachers">
                 <mdb-card-image :src="require('@/assets/Panitapp.png')" alt="Card image cap" style="margin-left: 30px; margin-right: 30px;"></mdb-card-image>
                 <mdb-mask flex-center waves overlay="white-slight"></mdb-mask>
               </a>
@@ -17,14 +17,16 @@
               <h5 class="pb-2 pt-1" style="color:#013D40"><mdb-icon icon="chalkboard-teacher"/> Mis cursos</h5>
               <mdb-card-title style="color:#037E85"><strong>Cursos</strong></mdb-card-title>
               <mdb-card-text>Desde está opción podras ingresar a los cursos que están a tu cargo o crear uno nuevo</mdb-card-text>
-              <mdb-btn style="color:#FFFFFF"><mdb-icon icon="chalkboard" class="mr-1"/>Cursos</mdb-btn>
+              <a href="/cursos_teachers">
+                <mdb-btn style="color:#FFFFFF"><mdb-icon icon="chalkboard" class="mr-1"/>Cursos</mdb-btn>
+              </a>
             </mdb-card-body>
           </mdb-card>
         </mdb-col>
         <mdb-col sm="4">
           <mdb-card narrow>
             <mdb-view hover cascade>
-              <a href="#!">
+              <a href="/trabajos_teachers">
                 <mdb-card-image :src="require('@/assets/Trabajos.png')" alt="Card image cap" style="margin-left: 30px; margin-right: 30px;"></mdb-card-image>
                 <mdb-mask flex-center waves overlay="white-slight"></mdb-mask>
               </a>
@@ -33,14 +35,16 @@
               <h5 class="pb-2 pt-1" style="color:#013D40"><mdb-icon icon="book"/> Trabajos propuestos</h5>
               <mdb-card-title style="color:#037E85"><strong>Trabajos</strong></mdb-card-title>
               <mdb-card-text>Crea y revisa los trabajos que has asigando a los estudiantes de tus cursos</mdb-card-text>
-              <mdb-btn style="color:#FFFFFF"><mdb-icon icon="list" class="mr-1"/>Trabajos</mdb-btn>
+              <a href="/trabajos_teachers">
+                <mdb-btn style="color:#FFFFFF"><mdb-icon icon="list" class="mr-1"/>Trabajos</mdb-btn>
+              </a>
             </mdb-card-body>
           </mdb-card>
         </mdb-col>
         <mdb-col sm="4">
           <mdb-card narrow>
             <mdb-view hover cascade>
-              <a href="#!">
+              <a href="/calendario_teachers">
                 <mdb-card-image :src="require('@/assets/Calendario.png')" alt="Card image cap" style="margin-left: 30px; margin-right: 30px;"></mdb-card-image>
                 <mdb-mask flex-center waves overlay="white-slight"></mdb-mask>
               </a>
@@ -49,7 +53,9 @@
               <h5 class="pb-2 pt-1" style="color:#013D40"><mdb-icon icon="calendar-alt"/> Mi Calendario</h5>
               <mdb-card-title style="color:#037E85"><strong>Calendario</strong></mdb-card-title>
               <mdb-card-text>Revisa las clases programadas y la fecha limite de los trabajos asignados.</mdb-card-text>
-              <mdb-btn style="color:#FFFFFF"><mdb-icon icon="calendar-check" class="mr-1"/>Calendario</mdb-btn>
+              <a href="/calendario_teachers">
+                <mdb-btn style="color:#FFFFFF"><mdb-icon icon="calendar-check" class="mr-1"/>Calendario</mdb-btn>
+              </a>
             </mdb-card-body>
           </mdb-card>
         </mdb-col>

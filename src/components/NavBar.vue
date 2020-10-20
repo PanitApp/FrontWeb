@@ -1,13 +1,15 @@
 <template>
   <mdb-navbar color="#013D40" position="top" style="background-color:#013D40">
-    <mdb-navbar-brand href="https://mdbootstrap.com/">
-      <img src="@/assets/Inicio.png" height="30" alt=""> <b style="color:#FFFFFF">PanitApp</b>
-    </mdb-navbar-brand>
+    <a href="/index_teachers">
+      <mdb-navbar-brand>
+        <img src="@/assets/Inicio.png" height="30" alt=""> <b style="color:#FFFFFF">PanitApp</b>
+      </mdb-navbar-brand>
+    </a>  
     <mdb-navbar-toggler>
       <mdb-navbar-nav right>
-        <mdb-nav-item href="#"><b style="color:#FFFFFF">Cursos</b></mdb-nav-item>
-        <mdb-nav-item href="#"><b style="color:#FFFFFF">Trabajos</b></mdb-nav-item>
-        <mdb-nav-item href="#"><b style="color:#FFFFFF">Notas</b></mdb-nav-item>
+        <mdb-nav-item href="/cursos_teachers"><b style="color:#FFFFFF">Cursos</b></mdb-nav-item>
+        <mdb-nav-item href="/trabajos_teachers"><b style="color:#FFFFFF">Trabajos</b></mdb-nav-item>
+        <mdb-nav-item href="/notas_teachers"><b style="color:#FFFFFF">Notas</b></mdb-nav-item>
         <mdb-dropdown tag="li" class="nav-item">
           <mdb-dropdown-toggle tag="a" slot="toggle" waves-fixed><b><mdb-icon icon="tools" /></b></mdb-dropdown-toggle>
           <mdb-dropdown-menu>

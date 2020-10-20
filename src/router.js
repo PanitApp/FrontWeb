@@ -35,7 +35,21 @@ export default new Router({
       path: '/index_students',
       name: 'IndexStudents',
       component: () => import("@/views/Index_students.vue"),
+    },
+    {
+      path: '/cursos_teachers',
+      name: 'CursosTeachers',
+      component: () => import("@/views/Cursos_teachers.vue"),
+    },
+    {
+      path: '/trabajos_teachers',
+      name: 'TrabajosTeachers',
+      component: () => import("@/views/Trabajos_teachers.vue"),
+    },
+    {
+      path: '/calendario_teachers',
+      name: 'CalendarioTeachers',
+      component: () => import("@/views/Calendario_teachers.vue"),
     }
-    
   ]
 })
