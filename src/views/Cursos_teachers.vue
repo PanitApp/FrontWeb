@@ -91,11 +91,6 @@ export default {
   directives: {
     animateOnScroll
   },
-  methods: {
-    verCurso() {
-      this.$router.push('/cursos_ver');
-    }
-  }
 };
 </script>
 
