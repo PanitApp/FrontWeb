@@ -45,7 +45,7 @@
               <mdb-card-body>
                 <mdb-card-title><mdb-icon icon="graduation-cap" class="green-text" /><strong> Programación</strong></mdb-card-title>
                 <mdb-card-text>Curso introductorio de programación en el lenguage Java.</mdb-card-text>
-                <mdb-btn @click="verCurso" style="background-color:#013D40">Más</mdb-btn>
+                <mdb-btn @click="irVerCursos" style="background-color:#013D40">Más</mdb-btn>
               </mdb-card-body>
             </mdb-card>
           </mdb-col>
@@ -86,6 +86,9 @@ export default {
   methods:{
     ircrearCursos: function(){
         this.$router.push('/cursos_crear')
+    },
+    irVerCursos: function(){
+        this.$router.push('/cursos_ver')
       }
   },
   directives: {
