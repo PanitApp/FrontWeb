@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import gql from 'graphql-tag'
+import gql from 'graphql-tag';
 import { mdbInput, mdbBtn } from 'mdbvue';
 const registrar= gql`
     mutation crearUsuario($usuario: RegisterInput){

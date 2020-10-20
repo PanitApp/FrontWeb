@@ -17,9 +17,8 @@
               <h5 class="pb-2 pt-1" style="color:#013D40"><mdb-icon icon="chalkboard-teacher"/> Mis cursos</h5>
               <mdb-card-title style="color:#037E85"><strong>Cursos</strong></mdb-card-title>
               <mdb-card-text>Desde está opción podras ingresar a los cursos que están a tu cargo o crear uno nuevo</mdb-card-text>
-              <a href="/cursos_teachers">
-                <mdb-btn style="color:#FFFFFF"><mdb-icon icon="chalkboard" class="mr-1"/>Cursos</mdb-btn>
-              </a>
+                <mdb-btn v-on:click="irCursos()" style="color:#FFFFFF"><mdb-icon icon="chalkboard" class="mr-1"/>Cursos</mdb-btn>
+
             </mdb-card-body>
           </mdb-card>
         </mdb-col>
@@ -61,6 +60,7 @@
         </mdb-col>
       </mdb-row>
     </main>
+    <h1>{{nombreusuario}}</h1>
     <Footer/>
 	</mdb-container>
 </template>
@@ -86,6 +86,17 @@
       mdbIcon,
       NavBarTeachers,
       Footer
-		}
+    },
+    methods:{
+      irCursos: function(){
+        this.$router.push('/cursos_teachers')
+      }
+    },
+    data(){
+    return{
+      idstore: this.$store.state.user.id,
+      nombreusuario: this.$store.state.user.username
+    }
+  }
 	}
 </script>
