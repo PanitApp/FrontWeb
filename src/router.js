@@ -26,6 +26,16 @@ export default new Router({
       name: 'Register',
       component: () => import("@/views/Register.vue"),
     },
+    {
+      path: '/index_teachers',
+      name: 'IndexTeachers',
+      component: () => import("@/views/Index_teachers.vue"),
+    },
+    {
+      path: '/index_students',
+      name: 'IndexStudents',
+      component: () => import("@/views/Index_students.vue"),
+    }
     
   ]
 })
