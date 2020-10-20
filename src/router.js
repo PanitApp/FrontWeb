@@ -55,6 +55,11 @@ export default new Router({
       path: '/cursos_ver',
       name: 'CursosVer',
       component: () => import("@/views/Cursos_ver.vue"),
+    },
+    {
+      path: '/cursos_agregar_estudiante',
+      name: 'CursosAgregarEstudiante',
+      component: () => import("@/views/Cursos_agregar_estudiante.vue"),
     }
   ]
 })

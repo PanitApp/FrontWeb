@@ -23,7 +23,7 @@
                                                 fermentum. Donec sed odio operae, eu vulputate felis rhoncus. Praeterea iter est quasdam res quas ex communi. At nos hinc posthac, sitientis
                                                 piros</p>
                       <button @click.prevent="volver" style="color:#03A2AB;" class="border m-2 rounded"><mdb-icon icon="undo" class="mr-2"/>Volver</button>
-                      <button style="color:#03A2AB;" class="border m-2 rounded"><mdb-icon icon="users" class="mr-2"/>Agregar estudiantes</button>
+                      <button @click.prevent="irAgregarEStudiantes" style="color:#03A2AB;" class="border m-2 rounded"><mdb-icon icon="users" class="mr-2"/>Agregar estudiantes</button>
                     </mdb-col>
                   </mdb-row>   
                 </mdb-col>
@@ -68,7 +68,10 @@ export default {
   methods :{
     volver: function (){
       this.$router.push('/cursos_teachers');
-    }
+    },
+    irAgregarEStudiantes: function (){
+      this.$router.push('/cursos_agregar_estudiante');
+    },
   },
   data() {
     return {
