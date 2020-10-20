@@ -12,11 +12,20 @@ export default new Router({
       component: () => import("@/views/Home.vue"),
     },
     {
+      path: '/login',
+      name: 'Loginr',
+      component: () => import("@/views/Login.vue"),
+    },
+    {
+      path: '/apollo',
+      name: 'Apollo',
+      component: () => import("@/components/ApolloExample.vue"),
+    },
+    {
       path: '/register',
       name: 'Register',
       component: () => import("@/views/Register.vue"),
-    }
-    
+    },
     
   ]
 })
