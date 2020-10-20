@@ -38,7 +38,8 @@
                             <input type="textarea" class="form-control" placeholder="Descripción" aria-label="Username" aria-describedby="basic-addon">
                           </div>
                         </div>
-                        <button style="color:#03A2AB;" class="border m-2 rounded" v-on:click="login(data)" type="submit" target="_blank"><mdb-icon icon="plus-circle" class="mr-2"/>Crear curso</button>
+                        <button @click.prevent="volver" style="color:#03A2AB;" class="border m-2 rounded"><mdb-icon icon="undo" class="mr-2"/>Volver</button>
+                        <button style="color:#03A2AB;" class="border m-2 rounded" v-on:click="login(data)" type="submit"><mdb-icon icon="plus-circle" class="mr-2"/>Crear curso</button>
                       </form>
                     </mdb-col>
                   </mdb-row>   
@@ -73,7 +74,12 @@ export default {
   },
   directives: {
     animateOnScroll
+  },
+  methods :{
+  volver: function (){
+    window.location.href = "/cursos_teachers";
   }
+}
 };
 </script>
 
