@@ -20,10 +20,12 @@
                     [ Aquí podrás crear y ver tus cursos ]</p>
                   <mdb-row class="d-flex flex-row justify-content-center">
                     <mdb-col md="6">
-                      <a href="" class="nav-link border m-2 font-weight-bold rounded" target="_blank"><mdb-icon icon="chalkboard" class="mr-2"/>Ver cursos</a>
+                      <a href="" class="nav-link border m-2 font-weight-bold rounded"><mdb-icon icon="chalkboard" class="mr-2"/>Ver cursos</a>
                     </mdb-col>  
                     <mdb-col md="6"> 
+
                       <a v-on:click="ircrearCursos()" class="nav-link border m-2 font-weight-bold rounded" target="_blank"><mdb-icon icon="plus-circle" class="mr-2"/>Crear curso</a>
+
                     </mdb-col>
                   </mdb-row>   
                 </mdb-col>

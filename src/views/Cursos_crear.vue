@@ -38,7 +38,11 @@
                             <input v-model="newDescC" type="textarea" class="form-control" placeholder="Descripción" aria-label="Username" aria-describedby="basic-addon">
                           </div>
                         </div>
+
                         <button style="color:#03A2AB;" class="border m-2 rounded" v-on:click="crearC()"  type="button" target="_blank"><mdb-icon icon="plus-circle" class="mr-2"/>Crear curso</button>
+
+                        <button @click.prevent="volver" style="color:#03A2AB;" class="border m-2 rounded"><mdb-icon icon="undo" class="mr-2"/>Volver</button>
+                        
                       </form>
                     </mdb-col>
                   </mdb-row>   
@@ -107,11 +111,15 @@ export default {
          
        },
         });
-      }
+      },
+      volver: function (){
+    
+  }
   },
   directives: {
     animateOnScroll
-  }
+  },
+
 };
 </script>
 
