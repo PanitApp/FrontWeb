@@ -64,9 +64,12 @@
           <mdb-col v-bind:key="n.id" v-for="n in data.getCursosByProfesor" md="4" class="mb-5">
             <mdb-card class="animated fadeInRight">
               <mdb-card-body>
+
                 <mdb-card-title><mdb-icon icon="graduation-cap" class="green-text" /><strong> {{n.nombre}}</strong></mdb-card-title>
                 <mdb-card-text>{{n.descripcion}}</mdb-card-text>
-                <router-link to="/advanced" class="float-right"><mdb-btn style="background-color:#013D40">Más</mdb-btn></router-link>
+                 <mdb-btn @click="irVerCursos" style="background-color:#013D40">Más</mdb-btn>
+               
+
               </mdb-card-body>
             </mdb-card>
           </mdb-col>
@@ -118,11 +121,15 @@ export default {
     ircrearCursos: function(){
       this.idProfe= this.$store.state.user.id;
         this.$router.push('/cursos_crear')
-      },
+
+    },
+    irVerCursos: function(){
+        this.$router.push('/cursos_ver')
+    }
   },
   directives: {
     animateOnScroll
-  }
+  },
 };
 </script>
 

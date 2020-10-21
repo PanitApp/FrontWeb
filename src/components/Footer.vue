@@ -1,6 +1,6 @@
 <template>
   <!-- Footer -->
-  <mdb-footer style="background-color:#013D40" class="font-small pt-4 mt-4">
+  <mdb-footer style="background-color:#013D40;  margin-top:150px" class="font-small pt-4 mt-4">
     <div class="footer-copyright text-center py-3">
       <mdb-container fluid>
         <mdb-row>
