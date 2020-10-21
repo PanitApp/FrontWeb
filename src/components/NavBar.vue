@@ -7,6 +7,7 @@
     </a>  
     <mdb-navbar-toggler>
       <mdb-navbar-nav right>
+        <mdb-nav-item v-if="isLogged" v-on:click="logout()"><b style="color:#FFFFFF">finalizar sesion</b></mdb-nav-item>
         <mdb-nav-item href="/cursos_teachers"><b style="color:#FFFFFF">Cursos</b></mdb-nav-item>
         <mdb-nav-item href="/trabajos_teachers"><b style="color:#FFFFFF">Trabajos</b></mdb-nav-item>
         <mdb-nav-item href="/notas_teachers"><b style="color:#FFFFFF">Notas</b></mdb-nav-item>
@@ -37,6 +38,18 @@
       mdbDropdownToggle,
       mdbDropdownItem,
       mdbIcon
+    },
+    data(){
+      return{
+        isLogged: this.$store.getters.returnLogState
+      }
+    },
+    methods:{
+      logout: function(){
+        this.$store.dispatch('resetUser')
+        this.$router.push('/login')
+      }
     }
+
   }
 </script>

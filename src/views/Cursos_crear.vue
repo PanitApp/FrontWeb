@@ -41,7 +41,7 @@
 
                         <button style="color:#03A2AB;" class="border m-2 rounded" v-on:click="crearC()"  type="button" target="_blank"><mdb-icon icon="plus-circle" class="mr-2"/>Crear curso</button>
 
-                        <button @click.prevent="volver" style="color:#03A2AB;" class="border m-2 rounded"><mdb-icon icon="undo" class="mr-2"/>Volver</button>
+                        <button @click.prevent="volver()" style="color:#03A2AB;" class="border m-2 rounded"><mdb-icon icon="undo" class="mr-2"/>Volver</button>
                         
                       </form>
                     </mdb-col>
@@ -69,7 +69,10 @@ import gql from 'graphql-tag';
 import { mdbContainer, mdbCol, mdbRow, mdbIcon, mdbEdgeHeader, mdbCardBody, animateOnScroll } from 'mdbvue';
 const CrearCurso= gql`
     mutation crearCurso($curso: CursoInput){
-      crearCurso(curso:$curso)
+      crearCurso(curso:$curso){
+        id
+        nombre
+      }
 
     }
 
@@ -113,7 +116,7 @@ export default {
         });
       },
       volver: function (){
-    
+    this.$router.push('/cursos_teachers')
   }
   },
   directives: {

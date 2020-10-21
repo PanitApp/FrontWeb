@@ -20,7 +20,7 @@
                     [ Aquí podrás crear y ver tus cursos ]</p>
                   <mdb-row class="d-flex flex-row justify-content-center">
                     <mdb-col md="6">
-                      <a href="" class="nav-link border m-2 font-weight-bold rounded"><mdb-icon icon="chalkboard" class="mr-2"/>Ver cursos</a>
+                      <a href="/cursos_teachers" class="nav-link border m-2 font-weight-bold rounded"><mdb-icon icon="chalkboard" class="mr-2"/>Ver cursos</a>
                     </mdb-col>  
                     <mdb-col md="6"> 
 
@@ -39,18 +39,48 @@
         <mdb-col md="10" class="mx-auto text-center text-muted mb-5">
           <p>Listado de cursos asociados</p>
         </mdb-col>
-        <mdb-row>
-          <mdb-col md="4" class="mb-5">
+        
+          <ApolloQuery
+      :query="gql => gql`
+        query  ($idProfe: ID!) {
+          getCursosByProfesor(id_profesor:$idProfe){
+            id
+            nombre
+            descripcion
+          }
+        }
+      `"
+      :variables="{ idProfe }"
+    >
+      <template slot-scope="{ result: { loading, error, data } }">
+        <!-- Loading -->
+        <div v-if="loading" class="loading apollo">Loading...</div>
+
+        <!-- Error -->
+        <div v-else-if="error" class="error apollo">An error occured: {{error}}</div>
+
+        <!-- Result -->
+        <mdb-row v-else-if="data!=null" >
+          <mdb-col v-bind:key="n.id" v-for="n in data.getCursosByProfesor" md="4" class="mb-5">
             <mdb-card class="animated fadeInRight">
               <mdb-card-body>
-                <mdb-card-title><mdb-icon icon="graduation-cap" class="green-text" /><strong> Programación</strong></mdb-card-title>
-                <mdb-card-text>Curso introductorio de programación en el lenguage Java.</mdb-card-text>
+                <mdb-card-title><mdb-icon icon="graduation-cap" class="green-text" /><strong> {{n.nombre}}</strong></mdb-card-title>
+                <mdb-card-text>{{n.descripcion}}</mdb-card-text>
                 <router-link to="/advanced" class="float-right"><mdb-btn style="background-color:#013D40">Más</mdb-btn></router-link>
               </mdb-card-body>
             </mdb-card>
           </mdb-col>
-        </mdb-row>
-        <h1>{{idstore}}</h1>
+          </mdb-row>
+        
+
+        <!-- No result -->
+        <div v-else class="no-result apollo">No result :(</div>
+      </template>
+    </ApolloQuery>
+
+          
+        
+        <h1>{{idProfe}}</h1>
         <Footer/>
       </mdb-container>
     </div>
@@ -79,14 +109,16 @@ export default {
   },
   data(){
     return{
-      idstore: this.$store.state.user.id,
-      nombreusuario: this.$store.state.user.username
+      idProfe: this.$store.state.user.id,
+      nombreusuario: this.$store.state.user.username,
+      numeros:[1,2,3,4,5,6,7,8]
     }
   },
   methods:{
     ircrearCursos: function(){
+      this.idProfe= this.$store.state.user.id;
         this.$router.push('/cursos_crear')
-      }
+      },
   },
   directives: {
     animateOnScroll

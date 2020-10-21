@@ -1,9 +1,7 @@
 <template>
   <div class="home">
-    <img alt="MDB logo" src="../assets/logo-mdb-vue-small.png">
-    <HelloWorld msg="Welcome to Your MDB Vue.js App"/>
-    <h1 v-if="idstore==-1">no has iniciado sesion</h1>
-    <h1 v-else>buenas humane: {{nombreusuario}}</h1>
+    <img alt="Vue logo" src="../assets/logo.png">
+    <HelloWorld msg="Welcome to Your Vue.js App"/>
   </div>
 </template>
 
@@ -12,15 +10,9 @@
 import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
-  name: 'home',
+  name: 'Home',
   components: {
     HelloWorld
-  },
-  data(){
-    return{
-      idstore: this.$store.state.user.id,
-      nombreusuario: this.$store.state.user.username
-    }
   }
 }
 </script>
