@@ -60,7 +60,6 @@
         </mdb-col>
       </mdb-row>
     </main>
-    <h1>{{nombreusuario}}</h1>
     <Footer/>
 	</mdb-container>
 </template>

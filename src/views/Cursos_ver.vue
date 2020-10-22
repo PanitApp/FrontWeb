@@ -33,7 +33,7 @@
 
         <!-- Result -->
          <mdb-card-body v-else-if="data!=null">
-<h2  class="pb-4"><strong style="color:#037E85" >{{data.getCursosCreadosById.nombre}}</strong></h2>
+<h2  class="pb-4"><strong style="color:#037E85" ></strong></h2>
               <mdb-row>
                 <mdb-col md="3">
                   <img src="../../src/assets/Panitapp.png" class="img-fluid"/>
@@ -93,13 +93,11 @@
       </template>
     </ApolloQuery>
       <mdb-container>
-        <p></p>
         <h2 class="text-center mt-5 font-weight-bold" style="color:#037E85">Estudiantes</h2>
         <mdb-col md="10" class="mx-auto text-center text-muted mb-5">
           <p>Listado de estudiantes inscritos</p>
           <mdb-datatable-2 v-model="data" :key="componentKey" />
         </mdb-col>
-        <h1>{{idCurso}}</h1>
         <Footer/>
       </mdb-container>
     </div>
@@ -139,7 +137,7 @@ export default {
       this.$router.push('/cursos_teachers');
     },
     irAgregarEStudiantes: function (){
-      this.$router.push({ name: "AgregarEst", params: { id:this.idCurso } })
+      this.$router.push({ name: "AgregarEst", params: { id: this.idCurso } })
     },
   },
   apollo: {

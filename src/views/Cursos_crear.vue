@@ -53,9 +53,7 @@
         </mdb-row>
       </mdb-container>
       <mdb-container>
-        <h1>{{newNombreC}}</h1>
-        <h1>{{newDescC}}</h1>
-        <h1>{{idProfesor}}</h1>
+
 
         <Footer/>
       </mdb-container>

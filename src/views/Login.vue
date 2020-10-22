@@ -8,8 +8,6 @@
         <div class="grey-text">
         <mdb-input v-model="newUsername" label="nombre de usuario"  type="text"/>
         <mdb-input v-model="newContrasena" label="contraseña"  type="password"/>
-        <p>{{newUsername}}</p>
-        <p>{{newContrasena}}</p>
         </div>
         <div class="text-center">
           <ApolloQuery
@@ -31,16 +29,14 @@
         <div v-else-if="error" class="error apollo">An error occured: {{error}}</div>
 
         <!-- Result -->
-        <div v-else-if="data.getUsuarioByUsername[0]!=null" class="result apollo">{{ data.getUsuarioByUsername[0].contrasena }}
-          <p v-if="data.getUsuarioByUsername[0].contrasena==newContrasena">contraseña correcta</p>
+        <div v-else-if="data.getUsuarioByUsername[0]!=null" class="result apollo">
+          <p v-if="data.getUsuarioByUsername[0].contrasena==newContrasena"></p>
         </div>
 
         <!-- No result -->
-        <div v-else class="no-result apollo">No result :(</div>
+        <div v-else class="no-result apollo"></div>
         <button class="btn" v-on:click="login(data)" style="background-color:#05DFEB;" type="button">Iniciar</button>
-        <p>{{id}}</p>
-        <p>{{autenticado}}</p>
-        <p>{{idstore}}</p>
+
       </template>
     </ApolloQuery>
 

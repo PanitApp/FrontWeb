@@ -52,7 +52,7 @@
 
         <!-- Result -->
         <!-- No result -->
-        <div v-if="data.getUsuarioByUsername[0]!=null">{{data.getUsuarioByUsername[0].rol.nombre}}</div>
+        <div v-if="data.getUsuarioByUsername[0]!=null"></div>
         <button @click="agregar(data.getUsuarioByUsername[0])" style="color:#03A2AB;" class="border m-2 rounded" type="button" target="_blank"><mdb-icon icon="plus-circle" class="mr-2"/>Agregar</button>
         <button @click.prevent="volver" style="color:#03A2AB;" class="border m-2 rounded"><mdb-icon icon="undo" class="mr-2"/>Volver</button>
       </template>
@@ -106,7 +106,7 @@ export default {
   },
   methods:{
     volver: function (){
-      this.$router.push('/cursos_ver');
+      this.$router.push({ name: "Cursover", params: { id: this.idCurso } })
   },
   agregar: function(data){
     if(data!=null){
@@ -123,7 +123,7 @@ export default {
          // Read the data from our cache for this query.
          // eslint-disable-next-line
          console.log(crearEstudianteCurso);
-         
+         window.alert("usuario agregado exitosamente")
        },
         });
       }
