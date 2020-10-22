@@ -33,7 +33,7 @@
 
         <!-- Result -->
          <mdb-card-body v-else-if="data!=null">
-<h2  class="pb-4"><strong style="color:#037E85" ></strong></h2>
+<h2  class="pb-4"><strong style="color:#037E85" >{{data.getCursosCreadosById.nombre}}</strong></h2>
               <mdb-row>
                 <mdb-col md="3">
                   <img src="../../src/assets/Panitapp.png" class="img-fluid"/>
