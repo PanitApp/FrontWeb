@@ -81,9 +81,7 @@
       </template>
     </ApolloQuery>
 
-          
-        
-        <h1>{{idProfe}}</h1>
+
         <Footer/>
       </mdb-container>
     </div>

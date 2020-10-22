@@ -18,11 +18,7 @@
       <mdb-btn color="primary" @click="registrarme()">Register</mdb-btn>
     </div>
   </form>
-        <p>{{newUsername}}</p>
-        <p>{{newNombre}}</p>
-        <p>{{newContrasena}}</p>
-        <p>{{newEmail}}</p>
-        <p>{{newRol}}</p>
+
           </div>
 
     
