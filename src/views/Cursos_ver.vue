@@ -9,36 +9,97 @@
       <mdb-container class="free-bird">
         <mdb-row>
           <mdb-col md="10" class="mx-auto white z-depth-1 py-2 px-2">
-            <mdb-card-body>
-              <h2 class="pb-4"><strong style="color:#037E85">Nombre del curso</strong></h2>
+           
+              
+                
+                  <ApolloQuery
+      :query="gql => gql`
+        query  ($idCurso: ID!) {
+          getCursosCreadosById(id:$idCurso){
+            id
+            nombre
+            descripcion
+          }
+        }
+      `"
+      :variables="{ idCurso }"
+    >
+      <template slot-scope="{ result: { loading, error, data } }">
+        <!-- Loading -->
+        <div v-if="loading" class="loading apollo">Loading...</div>
+
+        <!-- Error -->
+        <div v-else-if="error" class="error apollo">An error occured: {{error}}</div>
+
+        <!-- Result -->
+         <mdb-card-body v-else-if="data!=null">
+<h2  class="pb-4"><strong style="color:#037E85" >{{data.getCursosCreadosById.nombre}}</strong></h2>
               <mdb-row>
                 <mdb-col md="3">
                   <img src="../../src/assets/Panitapp.png" class="img-fluid"/>
                 </mdb-col>
-                <mdb-col md="9">
-                  <p class="pb-4">Descripción</p>
+          <mdb-col md="9"  >
+            <p class="pb-4">Descripción</p>
                   <mdb-row class="d-flex flex-row justify-content-center">
                     <mdb-col md="9">
-                        <p class="text-justify">Ambitioni dedisse scripsisse iudicaretur. Cras mattis iudicium purus sit amet
-                                                fermentum. Donec sed odio operae, eu vulputate felis rhoncus. Praeterea iter est quasdam res quas ex communi. At nos hinc posthac, sitientis
-                                                piros</p>
+                        <p class="text-justify">{{data.getCursosCreadosById.descripcion}}</p>
                       <button @click.prevent="volver" style="color:#03A2AB;" class="border m-2 rounded"><mdb-icon icon="undo" class="mr-2"/>Volver</button>
                       <button @click.prevent="irAgregarEStudiantes" style="color:#03A2AB;" class="border m-2 rounded"><mdb-icon icon="users" class="mr-2"/>Agregar estudiantes</button>
                     </mdb-col>
                   </mdb-row>   
                 </mdb-col>
-              </mdb-row>
-            </mdb-card-body>
+        </mdb-row>
+        </mdb-card-body>
+
+        <!-- No result -->
+        <div v-else class="no-result apollo">No result :(</div>
+      </template>
+    </ApolloQuery>
+                  
+              
           </mdb-col>
         </mdb-row>
       </mdb-container>
+      <ApolloQuery
+      :query="gql => gql`
+        query  ($idCurso: ID!) {
+          getEstudiantesByCurso(id_curso:$idCurso){
+            id
+            nombre_usuario
+            contrasena
+            nombres
+            email
+            rol{
+              id
+              nombre
+            }
+          }
+        }
+      `"
+      :variables="{ idCurso }"
+    >
+      <template slot-scope="{ result: { loading, error, data } }">
+        <!-- Loading -->
+        <div v-if="loading" class="loading apollo">Loading...</div>
+
+        <!-- Error -->
+        <div v-else-if="error" class="error apollo">An error occured: {{error}}</div>
+
+        <!-- Result -->
+         <div v-else-if="data!=null"  ></div>
+
+        <!-- No result -->
+        <div v-else class="no-result apollo">No result :(</div>
+      </template>
+    </ApolloQuery>
       <mdb-container>
+        <p></p>
         <h2 class="text-center mt-5 font-weight-bold" style="color:#037E85">Estudiantes</h2>
         <mdb-col md="10" class="mx-auto text-center text-muted mb-5">
           <p>Listado de estudiantes inscritos</p>
-          <mdb-datatable-2 v-model="data" />
+          <mdb-datatable-2 v-model="data" :key="componentKey" />
         </mdb-col>
-        
+        <h1>{{idCurso}}</h1>
         <Footer/>
       </mdb-container>
     </div>
@@ -48,7 +109,15 @@
 import Footer from "@/components/Footer.vue";
 import NavBarTeachers from "@/components/NavBar.vue";
 import { mdbContainer, mdbCol, mdbRow, mdbIcon, mdbEdgeHeader, mdbCardBody, animateOnScroll, mdbDatatable2} from 'mdbvue';
-
+import gql from 'graphql-tag';
+ export const get_estudiantes = gql`
+  query  ($idCurso: ID!) {
+          getEstudiantesByCurso(id_curso:$idCurso){
+            id
+            nombre_usuario
+          }
+        }
+ `;
 export default {
   name: 'HomePage',
   components: {
@@ -70,12 +139,47 @@ export default {
       this.$router.push('/cursos_teachers');
     },
     irAgregarEStudiantes: function (){
-      this.$router.push('/cursos_agregar_estudiante');
+      this.$router.push({ name: "AgregarEst", params: { id:this.idCurso } })
     },
   },
+  apollo: {
+  // Advanced query with parameters
+  // The 'variables' method is watched by vue
+  estudiantes: {
+    query: get_estudiantes,
+    // Reactive parameters
+    variables () {
+      // Use vue reactive properties here
+      return {
+        idCurso: this.idCurso,
+      }
+    },
+    update (data) {
+      console.log(data)
+      console.log(this.data.rows[0])
+      this.data.rows=data.getEstudiantesByCurso
+      console.log(this.data.rows[0])
+      this.componentKey += 1;
+      return data.getEstudiantesByCurso
+    },
+    // Optional result hook
+    // Error handling
+    error (error) {
+      console.error('We\'ve got an error!', error)
+    },
+    // Loading state
+    // loadingKey is the name of the data property
+    // that will be incremented when the query is loading
+    // and decremented when it no longer is.
+
+  },
+},
   data() {
     return {
+      componentKey: 0,
+      idCurso:this.$route.params.id,
       data: {
+
         columns: [
             {
               label: 'ID',
@@ -83,20 +187,13 @@ export default {
               sort: true
             },
             {
-              label: 'NOMBRE',
-              field: 'name',
+              label: 'NOMBRE DE USUARIO',
+              field: 'nombre_usuario',
               sort: true
             }
           ],
           rows: [
-            {
-              id: '1',
-              name: 'Tiger Nixon',
-            },
-            {
-              id: '2',
-              name: 'Garrett Winters',
-            }
+
           ]
         }
       }

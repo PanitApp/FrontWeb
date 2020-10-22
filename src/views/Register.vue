@@ -10,8 +10,8 @@
       <mdb-input v-model="newContrasena" label="contraseña"  type="password"/>
     <select v-model="newRol" class="browser-default custom-select">
     <option selected>seleccione el rol </option>
-    <option value="1">estudiante</option>
-    <option value="2">profesor</option>
+    <option value="1">profesor</option>
+    <option value="2">estudiante</option>
   </select>
     </div>
     <div class="text-center">

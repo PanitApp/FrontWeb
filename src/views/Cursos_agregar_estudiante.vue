@@ -30,10 +30,35 @@
                             <input v-model="newNombreC" type="text" class="form-control" placeholder="Usuario del estudiante" aria-label="Username" aria-describedby="basic-addon">
                           </div>
                         </div>
+    <ApolloQuery
+      :query="gql => gql`
+        query  ($newNombreC: String!) {
+          getUsuarioByUsername(nombre_usuario: $newNombreC){
+           id
+           rol{
+             nombre
+           }
+          }
+        }
+      `"
+      :variables="{ newNombreC }"
+    >
+      <template slot-scope="{ result: { loading, error, data } }">
+        <!-- Loading -->
+        <div v-if="loading" class="loading apollo">Loading...</div>
 
-                        <button style="color:#03A2AB;" class="border m-2 rounded" type="button" target="_blank"><mdb-icon icon="plus-circle" class="mr-2"/>Agregar</button>
+        <!-- Error -->
+        <div v-else-if="error" class="error apollo">An error occured: {{error}}</div>
 
-                        <button @click.prevent="volver" style="color:#03A2AB;" class="border m-2 rounded"><mdb-icon icon="undo" class="mr-2"/>Volver</button>
+        <!-- Result -->
+        <!-- No result -->
+        <div v-if="data.getUsuarioByUsername[0]!=null">{{data.getUsuarioByUsername[0].rol.nombre}}</div>
+        <button @click="agregar(data.getUsuarioByUsername[0])" style="color:#03A2AB;" class="border m-2 rounded" type="button" target="_blank"><mdb-icon icon="plus-circle" class="mr-2"/>Agregar</button>
+        <button @click.prevent="volver" style="color:#03A2AB;" class="border m-2 rounded"><mdb-icon icon="undo" class="mr-2"/>Volver</button>
+      </template>
+    </ApolloQuery>
+
+                        
                         
                       </form>
                     </mdb-col>
@@ -54,6 +79,13 @@
 import Footer from "@/components/Footer.vue";
 import NavBarTeachers from "@/components/NavBar.vue";
 import { mdbContainer, mdbCol, mdbRow, mdbIcon, mdbEdgeHeader, mdbCardBody, animateOnScroll } from 'mdbvue';
+import gql from 'graphql-tag';
+const registrar= gql`
+    mutation ($idEstudiante: ID!, $idCurso: ID!){
+      crearEstudianteCurso(id_estudiante:$idEstudiante, id_curso:$idCurso)
+    }
+
+    `
 export default {
   name: 'HomePage',
   components: {
@@ -66,9 +98,38 @@ export default {
     NavBarTeachers,
     Footer
   },
+  data (){
+    return{
+      newNombreC:'',
+      idCurso: this.$route.params.id
+    }
+  },
   methods:{
     volver: function (){
       this.$router.push('/cursos_ver');
+  },
+  agregar: function(data){
+    if(data!=null){
+    if(data.rol.nombre=="Profesor"){
+      window.alert("no puede añadir un profesor a un curso")
+    }{
+          this.$apollo.mutate({
+       mutation: registrar,
+       variables: {
+         idCurso:this.idCurso,
+         idEstudiante:data.id
+       },
+       update: (cache, { data: { crearEstudianteCurso } }) => {
+         // Read the data from our cache for this query.
+         // eslint-disable-next-line
+         console.log(crearEstudianteCurso);
+         
+       },
+        });
+      }
+      }else{
+        window.alert('no ingreso un usuario registrado')
+      }
   }
   },
   directives: {

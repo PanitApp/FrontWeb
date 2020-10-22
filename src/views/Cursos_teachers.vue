@@ -67,7 +67,7 @@
 
                 <mdb-card-title><mdb-icon icon="graduation-cap" class="green-text" /><strong> {{n.nombre}}</strong></mdb-card-title>
                 <mdb-card-text>{{n.descripcion}}</mdb-card-text>
-                 <mdb-btn @click="irVerCursos" style="background-color:#013D40">Más</mdb-btn>
+                 <mdb-btn @click="irVerCursos(n)" style="background-color:#013D40">Más</mdb-btn>
                
 
               </mdb-card-body>
@@ -123,8 +123,8 @@ export default {
         this.$router.push('/cursos_crear')
 
     },
-    irVerCursos: function(){
-        this.$router.push('/cursos_ver')
+    irVerCursos: function(curso){
+        this.$router.push({ name: "Cursover", params: { id: curso.id } })
     }
   },
   directives: {

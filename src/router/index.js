@@ -54,6 +54,16 @@ const routes = [
     path: '/cursos_crear',
     name: 'CursosCrear',
     component: () => import("@/views/Cursos_crear.vue"),
+  },
+  {
+    path: '/cursos_ver/:id',
+    name: 'Cursover',
+    component: () => import("@/views/Cursos_ver.vue"),
+  },
+  {
+    path: '/cursos_agregar_est/:id',
+    name: 'AgregarEst',
+    component: () => import("@/views/Cursos_agregar_estudiante.vue"),
   }
 ]
 
