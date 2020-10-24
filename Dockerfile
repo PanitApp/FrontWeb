@@ -1,14 +1,16 @@
-FROM node:carbon-slim
+# base image
+FROM node:12.2.0-alpine
 
-# Create app directory
-WORKDIR /panitapp-frontweb
+# set working directory
+WORKDIR /app
 
-COPY package*.json ./
+# add `/app/node_modules/.bin` to $PATH
+ENV PATH /app/node_modules/.bin:$PATH
 
-# instalar dependencias del proyecto
+# install and cache app dependencies
+COPY package.json /app/package.json
 RUN npm install
+RUN npm install @vue/cli@3.7.0 -g
 
-# copiar los archivos y carpetas del proyecto al directorio de trabajo actual (es decir, la carpeta 'app')
-COPY . /panitapp-frontweb/
-
-CMD [ "npm ", "run","build" ]
+# start app
+CMD ["npm", "run", "serve"]

@@ -11,7 +11,7 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 Vue.config.productionTip = false
-
+Vue.config.devServer.disableHostCheck= true
 new Vue({
   router,
   store,
