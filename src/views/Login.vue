@@ -11,10 +11,8 @@
               </a>
             </mdb-view>
             <mdb-card-body cascade>
-
-<<<<<<< HEAD
               <form class="text-center border border-light p-5">
-                <p class="h4 text-center mb-4 ">Iniciar sesion</p>
+                <p class="h4 text-center mb-4">Iniciar sesion</p>
                 <mdb-input v-model="newUsername" label="Nombre de usuario"  type="text"/>
                 <mdb-input v-model="newContrasena" label="Contraseña"  type="password"/>
                 <p>{{newUsername}}</p>
@@ -44,45 +42,6 @@
                       <div v-else-if="data.getUsuarioByUsername[0]!=null" class="result apollo">{{ data.getUsuarioByUsername[0].contrasena }}
                         <p v-if="data.getUsuarioByUsername[0].contrasena==newContrasena">contraseña correcta</p>
                       </div>
-=======
-        
-        <form>
-        <p class="h4 text-center mb-4 ">Iniciar sesion</p>
-        <div class="grey-text">
-        <mdb-input v-model="newUsername" label="nombre de usuario"  type="text"/>
-        <mdb-input v-model="newContrasena" label="contraseña"  type="password"/>
-        </div>
-        <div class="text-center">
-          <ApolloQuery
-      :query="gql => gql`
-        query  ($newUsername: String!) {
-          getUsuarioByUsername(nombre_usuario: $newUsername){
-           ...usuario
-          }
-        }
-        ${$options.fragments.usuario}
-      `"
-      :variables="{ newUsername }"
-    >
-      <template slot-scope="{ result: { loading, error, data } }">
-        <!-- Loading -->
-        <div v-if="loading" class="loading apollo">Loading...</div>
-
-        <!-- Error -->
-        <div v-else-if="error" class="error apollo">An error occured: {{error}}</div>
-
-        <!-- Result -->
-        <div v-else-if="data.getUsuarioByUsername[0]!=null" class="result apollo">
-          <p v-if="data.getUsuarioByUsername[0].contrasena==newContrasena"></p>
-        </div>
-
-        <!-- No result -->
-        <div v-else class="no-result apollo"></div>
-        <button class="btn" v-on:click="login(data)" style="background-color:#05DFEB;" type="button">Iniciar</button>
-
-      </template>
-    </ApolloQuery>
->>>>>>> 1daf09ed32d78f48afd92b7273ee5eb28535315f
 
                       <!-- No result -->
                       <div v-else class="no-result apollo">No result :(</div>
