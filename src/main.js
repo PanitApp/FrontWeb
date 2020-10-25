@@ -11,7 +11,6 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 Vue.config.productionTip = false
-
 new Vue({
   router,
   store,

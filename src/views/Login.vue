@@ -15,8 +15,7 @@
                 <p class="h4 text-center mb-4">Iniciar sesion</p>
                 <mdb-input v-model="newUsername" label="Nombre de usuario"  type="text"/>
                 <mdb-input v-model="newContrasena" label="Contraseña"  type="password"/>
-                <p>{{newUsername}}</p>
-                <p>{{newContrasena}}</p>
+
                 
             
                 <div class="text-center">
@@ -46,9 +45,7 @@
                       <!-- No result -->
                       <div v-else class="no-result apollo">No result :(</div>
                       <button class="btn" v-on:click="login(data)" style="background-color:#05DFEB;" type="button">Iniciar</button>
-                      <p>{{id}}</p>
-                      <p>{{autenticado}}</p>
-                      <p>{{idstore}}</p>
+
                     </template>
                   </ApolloQuery>
                 </div>
