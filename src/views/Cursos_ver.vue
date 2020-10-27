@@ -111,8 +111,8 @@ import gql from 'graphql-tag';
  export const get_estudiantes = gql`
   query  ($idCurso: ID!) {
           getEstudiantesByCurso(id_curso:$idCurso){
-            id
-            nombre_usuario
+            nombres
+            email
           }
         }
  `;
@@ -180,13 +180,13 @@ export default {
 
         columns: [
             {
-              label: 'ID',
-              field: 'id',
+              label: 'NOMBRES',
+              field: 'nombres',
               sort: true
             },
             {
-              label: 'NOMBRE DE USUARIO',
-              field: 'nombre_usuario',
+              label: 'CORREO',
+              field: 'email',
               sort: true
             }
           ],

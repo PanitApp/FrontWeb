@@ -109,7 +109,7 @@ export default {
          // Read the data from our cache for this query.
          // eslint-disable-next-line
          console.log(crearCurso);
-         
+         window.alert('curso creado')
        },
         });
       },
