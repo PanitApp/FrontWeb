@@ -38,16 +38,17 @@
                       <div v-else-if="error" class="error apollo">An error occured: {{error}}</div>
 
                       <!-- Result -->
-                      <div v-else-if="data.getUsuarioByUsername[0]!=null" class="result apollo">{{ data.getUsuarioByUsername[0].contrasena }}
-                        <p v-if="data.getUsuarioByUsername[0].contrasena==newContrasena">contraseña correcta</p>
+                      <div v-else-if="data.getUsuarioByUsername[0]!=null" class="result apollo">
+
                       </div>
 
                       <!-- No result -->
-                      <div v-else class="no-result apollo">No result :(</div>
+                      <div v-else class="no-result apollo"></div>
                       <button class="btn" v-on:click="login(data)" style="background-color:#05DFEB;" type="button">Iniciar</button>
 
                     </template>
                   </ApolloQuery>
+                  <p>¿no tienes una cuenta?<a href="/register"> registrate aquí</a></p>
                 </div>
               </form>
             </mdb-card-body>
@@ -105,7 +106,7 @@
           if(data.getUsuarioByUsername[0].contrasena==this.newContrasena){
             this.id=data.getUsuarioByUsername[0].id;
             this.autenticado=true;
-            window.alert("registro completado")
+            window.alert("inicio de sesion exitoso")
             var usuario={
               id: data.getUsuarioByUsername[0].id,
               name: data.getUsuarioByUsername[0].nombre,

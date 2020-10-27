@@ -94,7 +94,8 @@
     data(){
     return{
       idstore: this.$store.state.user.id,
-      nombreusuario: this.$store.state.user.username
+      nombreusuario: this.$store.state.user.username,
+      isLogged: this.$store.state.isLogged
     }
   }
 	}
