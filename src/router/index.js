@@ -4,6 +4,13 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const routes = [
+
+  
+  {
+    path: '/',
+    name: 'LandingPage',
+    component: () => import("@/views/LandingPage.vue"),
+  },
   
   {
     path: '/home',
