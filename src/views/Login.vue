@@ -49,6 +49,7 @@
                     </template>
                   </ApolloQuery>
                   <p>¿no tienes una cuenta?<a href="/register"> registrate aquí</a></p>
+
                 </div>
               </form>
             </mdb-card-body>
@@ -97,11 +98,13 @@
       newRol: 1,
       resultId: 0,
       autenticado :  this.$store.getters.returnLogState,
-      idstore: this.$store.getters.returnUser.id
+      idstore: this.$store.getters.returnUser.id,
+      date: new Date().toJSON()
     }
   },
   methods: {
     login(data) {
+      
         if(data.getUsuarioByUsername[0]!=null ){
           if(data.getUsuarioByUsername[0].contrasena==this.newContrasena){
             this.id=data.getUsuarioByUsername[0].id;

@@ -141,7 +141,7 @@ export default {
       this.$router.push({ name: "AgregarEst", params: { id: this.idCurso } })
     },
     irAgregarAnuncios: function (){
-      this.$router.push({name: "AgregarAnuncio"})
+      this.$router.push({name: "AgregarAnuncio",params: { id: this.idCurso } })
     },
   },
   apollo: {

@@ -30,34 +30,9 @@
                             <input v-model="newNombreC" type="text" class="form-control" placeholder="Descripción" aria-label="Username" aria-describedby="basic-addon">
                           </div>
                         </div>
-    <ApolloQuery
-      :query="gql => gql`
-        query  ($newNombreC: String!) {
-          getUsuarioByUsername(nombre_usuario: $newNombreC){
-           id
-           rol{
-             nombre
-           }
-          }
-        }
-      `"
-      :variables="{ newNombreC }"
-    >
-      <template slot-scope="{ result: { loading, error, data } }">
-        <!-- Loading -->
-        <div v-if="loading" class="loading apollo">Loading...</div>
 
-        <!-- Error -->
-        <div v-else-if="error" class="error apollo">An error occured: {{error}}</div>
-
-        <!-- Result -->
-        <!-- No result -->
-        <div v-if="data.getUsuarioByUsername[0]!=null"></div>
-        <button @click="agregar(data.getUsuarioByUsername[0])" style="color:#03A2AB;" class="border m-2 rounded" type="button" target="_blank"><mdb-icon icon="plus-circle" class="mr-2"/>Agregar</button>
+          <button @click="agregar()" style="color:#03A2AB;" class="border m-2 rounded" type="button" target="_blank"><mdb-icon icon="plus-circle" class="mr-2"/>Agregar</button>
         <button @click.prevent="volver" style="color:#03A2AB;" class="border m-2 rounded"><mdb-icon icon="undo" class="mr-2"/>Volver</button>
-      </template>
-    </ApolloQuery>
-
                         
                         
                       </form>
@@ -81,9 +56,24 @@ import NavBarTeachers from "@/components/NavBar.vue";
 import { mdbContainer, mdbCol, mdbRow, mdbIcon, mdbEdgeHeader, mdbCardBody, animateOnScroll } from 'mdbvue';
 import gql from 'graphql-tag';
 const registrar= gql`
-    mutation ($idEstudiante: ID!, $idCurso: ID!){
-      crearEstudianteCurso(id_estudiante:$idEstudiante, id_curso:$idCurso)
+    mutation ($descripcion: String!,$fecha_publicacion: DateTime!, $archivo: String, $id_curso: Int!){
+  crearAnuncio(anuncio:{
+    descripcion: $descripcion,
+    fecha_publicacion: $fecha_publicacion,
+    archivo: $archivo,
+    id_curso: $id_curso
+  }){
+    id
+    descripcion
+    fecha_publicacion
+    archivo
+    curso{
+      id
+      nombre
+      descripcion
     }
+  }
+}
 
     `
 export default {
@@ -101,36 +91,35 @@ export default {
   data (){
     return{
       newNombreC:'',
-      idCurso: this.$route.params.id
+      idCurso:parseInt(this.$route.params.id) ,
+      date: new Date().toJSON(),
+      archivo:''
     }
   },
   methods:{
     volver: function (){
       this.$router.push({ name: "Cursover", params: { id: this.idCurso } })
   },
-  agregar: function(data){
-    if(data!=null){
-    if(data.rol.nombre=="Profesor"){
-      window.alert("no puede añadir un profesor a un curso")
-    }else{
-          this.$apollo.mutate({
+  agregar: function(){
+    
+        this.$apollo.mutate({
        mutation: registrar,
        variables: {
-         idCurso:this.idCurso,
-         idEstudiante:data.id
+         descripcion: this.newNombreC,
+         fecha_publicacion:this.date,
+         archivo:this.archivo,
+         id_curso:this.idCurso
+
        },
-       update: (cache, { data: { crearEstudianteCurso } }) => {
+       update: (cache, { data: { crearAnuncio } }) => {
          // Read the data from our cache for this query.
          // eslint-disable-next-line
-         console.log(crearEstudianteCurso);
-         window.alert("usuario agregado exitosamente")
+         console.log(crearAnuncio);
+         window.alert("anuncio creado exitosamente")
        },
         });
-      }
-      }else{
-        window.alert('no ingreso un usuario registrado')
-      }
   }
+  
   },
   directives: {
     animateOnScroll
