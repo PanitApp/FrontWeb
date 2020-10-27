@@ -112,7 +112,7 @@ export default {
     if(data!=null){
     if(data.rol.nombre=="Profesor"){
       window.alert("no puede añadir un profesor a un curso")
-    }{
+    }else{
           this.$apollo.mutate({
        mutation: registrar,
        variables: {
