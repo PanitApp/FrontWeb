@@ -12,7 +12,7 @@
             </mdb-view>
             <mdb-card-body cascade>
               <form class="text-center border border-light p-5">
-                <p class="h4 text-center mb-4">Iniciar sesion</p>
+                <p class="h4 text-center mb-4" style="color:#03A2AB;">Iniciar sesión</p>
                 <mdb-input v-model="newUsername" label="Nombre de usuario"  type="text"/>
                 <mdb-input v-model="newContrasena" label="Contraseña"  type="password"/>
                 <div class="text-center">
@@ -41,12 +41,12 @@
 
                       <!-- No result -->
                       <div v-else class="no-result apollo"></div>
-                      <button class="btn" v-on:click="login(data)" style="background-color:#05DFEB; margin-bottom: 30px" type="button">Iniciar</button>
+                      <button class="btn" v-on:click="login(data)" style="background-color:#03A2AB; color:#FFFFFF; margin-bottom: 30px" type="button">Iniciar</button>
 
                     </template>
                   </ApolloQuery>
                   <p>¿No tienes cuenta?</p>
-                  <p><a href="/register"> Registrate aquí</a></p>
+                  <p><a href="/register" style="color:#03A2AB;"> Registrate aquí</a></p>
 
                 </div>
               </form>

@@ -12,7 +12,7 @@
             </mdb-view>
             <mdb-card-body cascade>
               <form class="text-center border border-light p-5">
-                <p class="h4 text-center mb-4">Registro</p>
+                <p class="h4 text-center mb-4" style="color:#03A2AB;">Registro</p>
                 <mdb-input v-model="newUsername" label="Usuario"  type="text"/>
                 <mdb-input v-model="newEmail" label="Correo"  type="email"/>
                 <mdb-input v-model="newNombre" label="Nombres"  type="text"/>
@@ -23,10 +23,11 @@
                 </select>
 
                 <div class="text-center">
-                  <mdb-btn style="margin-top: 20px;" color="primary" @click="registrarme()">Registrarse</mdb-btn>
+                  <mdb-btn style="margin-top: 20px; background-color:#03A2AB; color:#FFFFFF;" @click="registrarme()">Registrate</mdb-btn>
                 </div>
               </form>
             </mdb-card-body>
+            <p style="text-align: right; margin-right: 20px;"><a href="/login" style="color:#03A2AB;">Inicia sesión</a></p>
           </mdb-card>
         </mdb-col>
   </mdb-row>
