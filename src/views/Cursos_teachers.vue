@@ -24,7 +24,7 @@
                     </mdb-col>  
                     <mdb-col md="6"> 
 
-                      <a v-on:click="ircrearCursos()" class="nav-link border m-2 font-weight-bold rounded" target="_blank"><mdb-icon icon="plus-circle" class="mr-2"/>Crear curso</a>
+                      <a v-on:click="ircrearCursos()" class="nav-link border m-2 font-weight-bold rounded"><mdb-icon icon="plus-circle" class="mr-2"/>Crear curso</a>
 
                     </mdb-col>
                   </mdb-row>   

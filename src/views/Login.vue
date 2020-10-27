@@ -3,7 +3,7 @@
     <mdb-col sm="4">
     </mdb-col>  
         <mdb-col sm="4" style="margin-top: 100px;">
-          <mdb-card narrow>
+          <mdb-card narrow  style="margin-bottom: 500px;">
             <mdb-view hover cascade>
               <a href="#!">
                 <mdb-card-image :src="require('@/assets/Inicio.png')" alt="Card image cap" style="margin-left: 30px; margin-right: 30px;"></mdb-card-image>
@@ -15,9 +15,6 @@
                 <p class="h4 text-center mb-4">Iniciar sesion</p>
                 <mdb-input v-model="newUsername" label="Nombre de usuario"  type="text"/>
                 <mdb-input v-model="newContrasena" label="Contraseña"  type="password"/>
-
-                
-            
                 <div class="text-center">
                   <ApolloQuery
                     :query="gql => gql`
@@ -44,11 +41,12 @@
 
                       <!-- No result -->
                       <div v-else class="no-result apollo"></div>
-                      <button class="btn" v-on:click="login(data)" style="background-color:#05DFEB;" type="button">Iniciar</button>
+                      <button class="btn" v-on:click="login(data)" style="background-color:#05DFEB; margin-bottom: 30px" type="button">Iniciar</button>
 
                     </template>
                   </ApolloQuery>
-                  <p>¿no tienes una cuenta?<a href="/register"> registrate aquí</a></p>
+                  <p>¿No tienes cuenta?</p>
+                  <p><a href="/register"> Registrate aquí</a></p>
 
                 </div>
               </form>
@@ -136,6 +134,5 @@
 <style scoped>
   #view{
     background-image: url('https://mdbootstrap.com/img/Photos/Others/architecture.jpg');
-    height: 100vh;
   }
 </style>

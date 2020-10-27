@@ -2,8 +2,8 @@
   <mdb-row id="view">
     <mdb-col sm="4">
     </mdb-col>  
-        <mdb-col sm="4" style="margin-top: 100px;">
-          <mdb-card narrow>
+        <mdb-col sm="4" style="margin-top: 50px;">
+          <mdb-card narrow style="margin-bottom: 420px;">
             <mdb-view hover cascade>
               <a href="#!">
                 <mdb-card-image :src="require('@/assets/Inicio.png')" alt="Card image cap" style="margin-left: 30px; margin-right: 30px;"></mdb-card-image>
@@ -23,7 +23,7 @@
                 </select>
 
                 <div class="text-center">
-                  <mdb-btn color="primary" @click="registrarme()">Registrarse</mdb-btn>
+                  <mdb-btn style="margin-top: 20px;" color="primary" @click="registrarme()">Registrarse</mdb-btn>
                 </div>
               </form>
             </mdb-card-body>
@@ -119,6 +119,5 @@ export default {
 <style scoped>
   #view{
     background-image: url('https://mdbootstrap.com/img/Photos/Others/architecture.jpg');
-    height: 100vh;
   }
 </style>
