@@ -45,6 +45,7 @@
                         <p class="text-justify">{{data.getCursosCreadosById.descripcion}}</p>
                       <button @click.prevent="volver" style="color:#03A2AB;" class="border m-2 rounded"><mdb-icon icon="undo" class="mr-2"/>Volver</button>
                       <button @click.prevent="irAgregarEStudiantes" style="color:#03A2AB;" class="border m-2 rounded"><mdb-icon icon="users" class="mr-2"/>Agregar estudiantes</button>
+                      <button @click.prevent="irAgregarAnuncios" style="color:#03A2AB;" class="border m-2 rounded"><mdb-icon icon="microphone" class="mr-2"/>Agregar anuncio</button>
                     </mdb-col>
                   </mdb-row>   
                 </mdb-col>
@@ -138,6 +139,9 @@ export default {
     },
     irAgregarEStudiantes: function (){
       this.$router.push({ name: "AgregarEst", params: { id: this.idCurso } })
+    },
+    irAgregarAnuncios: function (){
+      this.$router.push({name: "AgregarAnuncio"})
     },
   },
   apollo: {

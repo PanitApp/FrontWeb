@@ -64,6 +64,11 @@ const routes = [
     path: '/cursos_agregar_est/:id',
     name: 'AgregarEst',
     component: () => import("@/views/Cursos_agregar_estudiante.vue"),
+  },
+  {
+    path: '/cursos_agregar_anuncios',
+    name: 'AgregarAnuncio',
+    component: () => import("@/views/Cursos_agregar_anuncio.vue"),
   }
 ]
 
