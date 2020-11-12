@@ -7,7 +7,7 @@ mutation login ($login: LoginInput){
 }
 `
 export const REGISTER_USER = gql`
-mutation crearUsuario(usuario: RegisterInput) {
+mutation crearUsuario($usuario: RegisterInput) {
     createUser( name: $name, email: $email, password: $password) {
       token
     }
