@@ -17,12 +17,19 @@ const authLink = setContext(async (_, { headers }) => {
   console.log(token)
   
   // Return the headers to the context so httpLink can read them
-  return {
-    headers: {
-      ...headers,
-      authorization: token?'Bearer ' + token : ''
+  if(token!=null){
+    return {
+      headers: {
+        ...headers,
+        authorization: token?'Bearer ' + token : ''
+      }
+    }
+  }else{
+    return {
+      headers
     }
   }
+  
 })
 // Files URL root
 export const filesRoot = process.env.VUE_APP_FILES_ROOT || httpEndpoint.substr(0, httpEndpoint.indexOf('/graphql'))
