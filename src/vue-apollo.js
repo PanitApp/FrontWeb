@@ -13,13 +13,13 @@ const AUTH_TOKEN = 'apollo-token'
 const httpEndpoint = process.env.VUE_APP_GRAPHQL_HTTP || 'http://ec2-3-235-223-5.compute-1.amazonaws.com:4000/graphql'
 const authLink = setContext(async (_, { headers }) => {
   // get the authentication token from local storage if it exists
-  let token = JSON.parse(localStorage.getItem('apollo-token'))
-  const token1 =token.replace('"', '');
+  const token = toString( JSON.parse(localStorage.getItem('apollo-token'))).replace('"','')
+  
   // Return the headers to the context so httpLink can read them
   return {
     headers: {
       ...headers,
-      authorization: token1?'Bearer ' + token1 : ''
+      authorization: token?'Bearer ' + token : ''
     }
   }
 })
