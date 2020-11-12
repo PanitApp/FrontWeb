@@ -1,7 +1,7 @@
 import gql from 'graphql-tag'
 
 export const LOGGED_IN_USER = gql`
-  query ($username:username){
+  query ($username:String!){
     getUsuarioByUsername(username:$username){
     id
     username
