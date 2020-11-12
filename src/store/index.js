@@ -42,7 +42,7 @@ export default new Vuex.Store({
       }
     },
     async login ({ commit }, authDetails) {
-      try {
+      
         const { data } = await apolloClient.mutate({ mutation: LOGIN_USER, variables: { ...authDetails } })
         const token = data.login.access
         commit('SET_TOKEN', token)
@@ -51,9 +51,7 @@ export default new Vuex.Store({
         const  data1  = await apolloClient.query({ query: LOGGED_IN_USER, variables:{username: authDetails.username} })
         console.log(data1.data)
         commit('LOGIN_USER', data1.data.getUsuarioByUsername[0])
-      } catch (e) {
-        console.log(e)
-      }
+      
     },
     async setUser ({ commit },username) {
     console.log(username)
