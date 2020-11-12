@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import createPersistedState from "vuex-persistedstate"
+import { apolloClient } from '@/vue-apollo'
+import { LOGGED_IN_USER } from '@/graphql/queries'
+import { LOGIN_USER, REGISTER_USER } from '@/graphql/mutations'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -9,75 +12,61 @@ export default new Vuex.Store({
 })],
   state: {
     isLogged: false,
-    user: {
-      id: -1,
-      name: null,
-      username: null,
-      email: null,
-      Rol: null,
-    }
+    user: {},
+    token: null
   },
   mutations: {
-    CHANGE_LOG_STATE(state) {
-      state.isLogged = !state.isLogged;
+    SET_TOKEN (state, token) {
+      state.token = token
     },
-    RESET_USER(state) {
-      state.user.id = -1;
-      state.user.name = null;
-      state.user.username = null;
-      state.user.email = "";
+    LOGIN_USER (state, user) {
+      state.isLogged = true
+      state.user = { ...user }
     },
-    STORE_USER(state, user) {
-      state.user.id = user.id;
-      state.user.name = user.name;
-      state.user.username = user.username;
-      state.user.email = user.email;
-      state.user.Rol= user.Rol;
-    },
-    RESTART_LOGIN(state) {
-      state.isLogged = false;
-    },
+    LOGOUT_USER (state) {
+      state.isLogged =false
+      state.token = '' && localStorage.removeItem('apollo-token')
+      state.user={}
+    }
   },
   actions: {
-    changeLogState({ state, commit }) {
-      commit("CHANGE_LOG_STATE", state);
+    async register ({ commit, dispatch }, authDetails) {
+      try {
+        const { data } = await apolloClient.mutate({ mutation: REGISTER_USER, variables: { ...authDetails } })
+        const token = JSON.stringify(data.createUser.token)
+        commit('SET_TOKEN', token)
+        localStorage.setItem('apollo-token', token)
+        dispatch('setUser')
+      } catch (e) {
+        console.log(e)
+      }
     },
-    resetUser({ state, commit }) {
-      commit("RESET_USER", state);
-      commit("RESTART_LOGIN", state);
-      sessionStorage.clear();
+    async login ({ commit, dispatch }, authDetails) {
+      try {
+        const { data } = await apolloClient.mutate({ mutation: LOGIN_USER, variables: { ...authDetails } })
+        const token = JSON.stringify(data.login.access)
+        commit('SET_TOKEN', token)
+        localStorage.setItem('apollo-token', token)
+        dispatch('setUser',authDetails.username)
+      } catch (e) {
+        console.log(e)
+      }
     },
-    storeUser({ commit }, user) {
-      commit("STORE_USER", user);
+    async setUser ({ commit },username) {
+    const { data } = await apolloClient.query({ query: LOGGED_IN_USER, variables:{username} })
+    commit('LOGIN_USER', data.getUsuarioByUsername)
     },
+    async logOut ({ commit, dispatch }) {
+      commit('LOGOUT_USER')
+    }
   },
   getters: {
-    returnLogState: (state) => {
-      return state.isLogged;
-    },
-    returnHysState: (state) => {
-      return state.stateH;
-    },
-    returnHysProv: (state) => {
-      return state.ProvH;
-    },
-    returnView: (state) => {
-      return state.currentView;
-    },
-    returnUser: (state) => {
-      if (!state.isLogged) {
-        return "There is no logged user";
-      } else {
-        return state.user;
-      }
-    },
-    returnSearchedValue: (state) => {
-      if (state.searchedValue == "") {
-        return "There is no searched value";
-      } else {
-        return state.searchedValue;
-      }
-    },
+    //returnLogState: (state) => {
+      //return state.isLogged;
+    //},
+    isAuthenticated: state => !!state.token,
+    authStatus: state => state.isLogged,
+    user: state => state.user
   },
   modules: {},
 })

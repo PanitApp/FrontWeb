@@ -41,12 +41,12 @@
     },
     data(){
       return{
-        isLogged: this.$store.getters.returnLogState
+        isLogged: this.$store.getters.authStatus
       }
     },
     methods:{
       logout: function(){
-        this.$store.dispatch('resetUser')
+        this.$store.dispatch('logOut')
         this.$router.push('/login')
       }
     }
