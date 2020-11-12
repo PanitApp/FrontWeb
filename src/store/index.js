@@ -41,7 +41,7 @@ export default new Vuex.Store({
         console.log(e)
       }
     },
-    async login ({ commit, dispatch }, authDetails) {
+    async login ({ commit }, authDetails) {
       try {
         const { data } = await apolloClient.mutate({ mutation: LOGIN_USER, variables: { ...authDetails } })
         const token = data.login.access
