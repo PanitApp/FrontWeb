@@ -83,6 +83,7 @@
      login() {
       this.$store.dispatch('login',this.authDetails).then(()=>{
         let rol=this.$store.getters.user.rol
+        console.log(rol)
       if(rol=="Profesor"){
         this.$router.push('/index_teachers')
       }else{
