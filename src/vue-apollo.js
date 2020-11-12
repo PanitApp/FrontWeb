@@ -10,7 +10,7 @@ const AUTH_TOKEN = 'apollo-token'
 
 // Http endpoint
 
-const httpEndpoint = process.env.VUE_APP_GRAPHQL_HTTP || 'http://ec2-3-237-39-139.compute-1.amazonaws.com:4000/graphql'
+const httpEndpoint = process.env.VUE_APP_GRAPHQL_HTTP || 'http://ec2-3-235-223-5.compute-1.amazonaws.com:4000/graphql'
 const authLink = setContext(async (_, { headers }) => {
   // get the authentication token from local storage if it exists
   const token = JSON.parse(localStorage.getItem('apollo-token'))
