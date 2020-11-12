@@ -53,7 +53,9 @@ export default new Vuex.Store({
       }
     },
     async setUser ({ commit },username) {
+    console.log(username)
     const { data } = await apolloClient.query({ query: LOGGED_IN_USER, variables:{username} })
+    console.log(data)
     commit('LOGIN_USER', data.getUsuarioByUsername[0])
     },
     async logOut ({ commit}) {
