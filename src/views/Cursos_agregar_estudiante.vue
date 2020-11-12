@@ -35,9 +35,7 @@
         query  ($newNombreC: String!) {
           getUsuarioByUsername(username: $newNombreC){
            id
-           rol{
-             nombre
-           }
+           rol
           }
         }
       `"
@@ -110,7 +108,7 @@ export default {
   },
   agregar: function(data){
     if(data!=null){
-    if(data.rol.nombre=="Profesor"){
+    if(data.rol=="Profesor"){
       window.alert("no puede añadir un profesor a un curso")
     }else{
           this.$apollo.mutate({

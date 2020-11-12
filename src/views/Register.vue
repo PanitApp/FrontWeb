@@ -15,11 +15,11 @@
                 <p class="h4 text-center mb-4" style="color:#03A2AB;">Registro</p>
                 <mdb-input v-model="newUsername" label="Usuario"  type="text"/>
                 <mdb-input v-model="newEmail" label="Correo"  type="email"/>
-                <mdb-input v-model="newNombre" label="Nombres"  type="text"/>
-                <mdb-input v-model="newContrasena" label="Contraseña"  type="password"/>
+                <mdb-input v-model="newNombre" label="first_name"  type="text"/>
+                <mdb-input v-model="newpassword" label="Contraseña"  type="password"/>
                 <select v-model="newRol" label="Seleccione el rol" class="browser-default custom-select">
-                  <option value="1">Profesor</option>
-                  <option value="2">Estudiante</option>
+                  <option value="Profesor">Profesor</option>
+                  <option value="Estudiante">Estudiante</option>
                 </select>
 
                 <div class="text-center">
@@ -41,13 +41,10 @@ const registrar= gql`
       crearUsuario(usuario:$usuario){
         id
         username
-        contrasena
-        nombres
+        password
+        first_name
         email
-        rol{
-          id
-          nombre
-        }
+        rol
       }
     }
     ` 
@@ -66,13 +63,10 @@ export default {
       fragment usuario on Usuario {
         id
         username
-        contrasena
-        nombres
+        password
+        first_name
         email
-        rol{
-          id
-          nombre
-        }
+        rol
       }
     `
     },
@@ -80,7 +74,7 @@ export default {
     return {
       id: 0,
       newMessage: '',
-      newContrasena: '',
+      newpassword: '',
       newNombre: '',
       newEmail: '',
       newUsername: '',
@@ -95,10 +89,10 @@ export default {
        variables: {
          usuario: {
           username: this.newUsername,
-          contrasena: this.newContrasena,
-          nombres: this.newNombre,
+          password: this.newpassword,
+          first_name: this.newNombre,
           email: this.newEmail,
-          rol: parseInt(this.newRol)
+          rol: this.newRol
         },
        },
        update: (cache, { data: { crearUsuario } }) => {
