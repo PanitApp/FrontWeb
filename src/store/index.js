@@ -25,7 +25,8 @@ export default new Vuex.Store({
     },
     LOGOUT_USER (state) {
       state.isLogged =false
-      state.token = '' && localStorage.removeItem('apollo-token')
+      state.token = null
+      localStorage.removeItem('apollo-token')
       state.user={}
     }
   },

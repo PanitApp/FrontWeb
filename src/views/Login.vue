@@ -80,8 +80,8 @@
     }
   },
   methods: {
-    login() {
-      this.$store.dispatch('login',this.authDetails)
+    async login() {
+      await this.$store.dispatch('login',this.authDetails)
       let rol=this.$store.getters.user.rol
       if(rol=="Profesor"){
         this.$router.push('/index_teachers')
