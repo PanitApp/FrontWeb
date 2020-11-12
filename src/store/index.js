@@ -48,9 +48,9 @@ export default new Vuex.Store({
         commit('SET_TOKEN', token)
         localStorage.setItem('apollo-token', token)
         console.log(authDetails.username)
-        const { data } = await apolloClient.query({ query: LOGGED_IN_USER, variables:{username: authDetails.username} })
-        console.log(data)
-        commit('LOGIN_USER', data.getUsuarioByUsername[0])
+        const  data1  = await apolloClient.query({ query: LOGGED_IN_USER, variables:{username: authDetails.username} })
+        console.log(data1.data)
+        commit('LOGIN_USER', data1.data.getUsuarioByUsername[0])
       } catch (e) {
         console.log(e)
       }
