@@ -33,7 +33,7 @@
     <ApolloQuery
       :query="gql => gql`
         query  ($newNombreC: String!) {
-          getUsuarioByUsername(nombre_usuario: $newNombreC){
+          getUsuarioByUsername(username: $newNombreC){
            id
            rol{
              nombre

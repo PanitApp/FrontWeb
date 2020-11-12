@@ -40,7 +40,7 @@ const registrar= gql`
     mutation crearUsuario($usuario: RegisterInput){
       crearUsuario(usuario:$usuario){
         id
-        nombre_usuario
+        username
         contrasena
         nombres
         email
@@ -65,7 +65,7 @@ export default {
     usuario: gql`
       fragment usuario on Usuario {
         id
-        nombre_usuario
+        username
         contrasena
         nombres
         email
@@ -94,7 +94,7 @@ export default {
        mutation: registrar,
        variables: {
          usuario: {
-          nombre_usuario: this.newUsername,
+          username: this.newUsername,
           contrasena: this.newContrasena,
           nombres: this.newNombre,
           email: this.newEmail,

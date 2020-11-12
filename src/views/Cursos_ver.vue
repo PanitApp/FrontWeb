@@ -66,14 +66,11 @@
         query  ($idCurso: ID!) {
           getEstudiantesByCurso(id_curso:$idCurso){
             id
-            nombre_usuario
-            contrasena
-            nombres
+            username
+            first_name
+            last_name
             email
-            rol{
-              id
-              nombre
-            }
+            rol
           }
         }
       `"
