@@ -86,7 +86,7 @@
       if(rol=="Profesor"){
         this.$router.push('/index_teachers')
       }else{
-        this.$router.push('/index_teachers')
+        
       }
     }
   }
