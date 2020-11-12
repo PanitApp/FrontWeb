@@ -86,8 +86,10 @@
         console.log(rol)
       if(rol=="Profesor"){
         this.$router.push('/index_teachers')
-      }else{
+      }else if(rol=="Estudiante"){
         this.$router.push('/index_students')
+      }else{
+        console.log('error')
       }
       })
       
